@@ -17,12 +17,10 @@ const isUserAdminOfWorkspace = (workspace, userId) => {
         member.memberId._id.toString() === userId) &&
       member.role === 'admin'
   );
-  console.log(response);
   return response;
 };
 
 export const isUserMemberOfWorkspace = (workspace, userId) => {
-  console.log(userId);
   return workspace.members.find((member) => {
     console.log('member id ', member.memberId.toString());
     return member.memberId._id.toString() === userId;
@@ -98,7 +96,6 @@ export const deleteWorkspaceService = async (workspaceId, userId) => {
         statusCode: StatusCodes.NOT_FOUND
       });
     }
-    console.log(workspace.members, userId);
   const isAllowed = isUserAdminOfWorkspace(workspace, userId);
     //   const channelIds = workspace.channels.map((channel) => channel._id);
 
@@ -130,7 +127,6 @@ export const getWorkspaceService = async (workspaceId, userId) => {
         statusCode: StatusCodes.NOT_FOUND
       });
     }
-      console.log(workspace);
     const isMember = isUserMemberOfWorkspace(workspace, userId);
     if (!isMember) {
       throw new ClientError({

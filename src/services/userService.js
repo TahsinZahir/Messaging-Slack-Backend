@@ -65,7 +65,7 @@ export const signUpService = async (data) => {
     user.verificationTokenExpiry = null;
     await user.save();
 
-    console.log(user);
+    
 
     return user;
   } catch (error) {
